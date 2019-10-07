@@ -12,7 +12,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DataBindingUtils {
+class BindingAdapterUtil {
 
     companion object {
         @BindingAdapter("loadImgUrl")
@@ -46,7 +46,7 @@ class DataBindingUtils {
         fun loadImgUrlRounded(view: ImageView, url: String?) {
             Picasso.get()
                 .load(url)
-                .transform(RoundedCornersTransformation(50, 0, RoundedCornersTransformation.CornerType.ALL))
+                .transform(RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL))
                 .into(view)
         }
 

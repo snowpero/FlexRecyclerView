@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    app:cardCornerRadius="10dp">
+    app:contentPadding="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@android:color/holo_green_light">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,6 +40,22 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/iv_salary_company_logo"
             app:layout_constraintTop_toBottomOf="@id/tv_salary_company_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_salary_industry_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_salary_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_salary_industry_name"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

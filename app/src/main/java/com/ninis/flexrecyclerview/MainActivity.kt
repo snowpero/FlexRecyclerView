@@ -2,6 +2,7 @@ package com.ninis.flexrecyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,12 +13,15 @@ import com.ninis.flexrecyclerview.base.BaseItemModel
 import com.ninis.flexrecyclerview.data.ImageItemModel
 import com.ninis.flexrecyclerview.data.TextItemModel
 import com.ninis.flexrecyclerview.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     val viewModel: MainViewModel by lazy {
         MainViewModel(RetrofitManager.getRetrofitService(ApiService::class.java))
+    }
+
+    val itemDecoration: DividerItemDecoration by lazy {
+        DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
     }
 
     val flexAdapter = FlexAdapter()
@@ -31,7 +35,12 @@ class MainActivity : AppCompatActivity() {
         binding.rvMainList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = flexAdapter
-            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+            ContextCompat.getDrawable(this@MainActivity, R.drawable.recyclerview_vertical_divider)?.let {
+                itemDecoration.setDrawable(
+                    it
+                )
+            }
+            addItemDecoration(itemDecoration)
         }
 
         viewModel.getData()
