@@ -9,6 +9,7 @@ import com.ninis.flexrecyclerview.base.BaseItemModel
 import kotlinx.android.synthetic.main.vh_review.view.*
 import kotlinx.android.synthetic.main.vh_text_item.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class FlexAdapter: RecyclerView.Adapter<BaseViewHolder<*>>() {
     var items = LinkedList<Any>()
@@ -31,5 +32,13 @@ class FlexAdapter: RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     override fun getItemViewType(position: Int): Int {
         return if (items.isEmpty()) -1 else (items[position] as BaseItemModel).type.ordinal
+    }
+
+    fun setItem(listItem: ArrayList<BaseItemModel>) {
+        if( items.isNotEmpty() )
+            items.clear()
+
+        items.addAll(listItem)
+        notifyDataSetChanged()
     }
 }

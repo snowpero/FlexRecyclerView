@@ -23,7 +23,6 @@
             android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setListItems="@{viewModel.responseData.items}"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ninis.databindingrecyclerview.network.ApiService
-import com.ninis.databindingrecyclerview.network.RetrofitManager
+import com.ninis.flexrecyclerview.network.ApiService
+import com.ninis.flexrecyclerview.network.RetrofitManager
 import com.ninis.flexrecyclerview.adapter.FlexAdapter
+import com.ninis.flexrecyclerview.adapter.FooterAdapter
+import com.ninis.flexrecyclerview.adapter.HeaderAdapter
 import com.ninis.flexrecyclerview.base.BaseItemModel
 import com.ninis.flexrecyclerview.data.ImageItemModel
 import com.ninis.flexrecyclerview.data.TextItemModel
@@ -34,7 +38,11 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.rvMainList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = flexAdapter
+            adapter = ConcatAdapter(
+                HeaderAdapter(),
+                flexAdapter,
+                FooterAdapter()
+            )
             ContextCompat.getDrawable(this@MainActivity, R.drawable.recyclerview_vertical_divider)?.let {
                 itemDecoration.setDrawable(
                     it
@@ -45,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getData()
 //        setTestData()
+
+        viewModel.listItems.observe(this, Observer {
+            flexAdapter.setItem(it)
+        })
     }
 
     private fun setTestData() {

@@ -1,8 +1,7 @@
-package com.ninis.databindingrecyclerview.network
+package com.ninis.flexrecyclerview.network
 
 import com.ninis.flexrecyclerview.data.ResponseModel
-import io.reactivex.Single
-import okhttp3.ResponseBody
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
 interface ApiService {
