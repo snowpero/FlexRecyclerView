@@ -9,3 +9,4 @@
  - RxJava3 적용
  - ConcatAdapter를 이용해 Header, Footer 추가
  - develop brandch 추가
+ - 2022.01.17 테스트
